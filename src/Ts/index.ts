@@ -8,6 +8,7 @@ const rootNode = document.querySelector("#root");
 
 const app = Elm.Main.init({
   node: rootNode,
+  flags: "Initial Message",
 });
 
 Storage(app);
