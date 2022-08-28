@@ -5,4 +5,33 @@ body {
 	background-color: var(--clr-surface-100);
 
 	font-family: var(--font-serif);
+
+	overflow-y: auto;
+	overflow-y: overlay;
+	overflow-x: hidden;
+
+	&::-webkit-scrollbar {
+		width: 2px;
+		border-radius: 5px;
+
+		&-thumb {
+			// background-color: var(--clr-surface-500);
+			background-image: linear-gradient(
+				to bottom,
+				var(--clr-surface-100) 0%,
+				var(--clr-surface-900) 50%,
+				var(--clr-surface-100) 100%
+			);
+		}
+
+		&-track {
+			background-color: transparent;
+		}
+	}
+}
+
+.root {
+	display: grid;
+	place-content: center;
+	cursor: pointer;
 }

@@ -1,1 +1,65 @@
 @use "/Abstracts" as *;
+@use "sass:math" as math;
+
+$size: 1.5rem;
+
+.flux-container {
+	display: inline-block;
+
+	transform: translateY(-2rem);
+
+	// $bottom-left: -100vmax 100%;
+	// $top-left: -100vmax 0%;
+
+	// $top-right: 100vmax 0%;
+	// $bottom-right: 100vmax 100%;
+
+	// clip-path: polygon($top-left, $top-right, $bottom-right, $bottom-left);
+}
+
+.flux {
+	$shadow-color: hsl(var(--flux-color) 50% 50%);
+
+	position: relative;
+
+	border-radius: var(--rounded-full);
+	margin-top: math.div($size * 75, 100) * -1;
+
+	width: $size;
+	height: $size;
+
+	box-shadow: 0px 1px 0px 1px $shadow-color;
+	transform: translateX(var(--flux-x)) rotate(var(--flux-rotate)) scale3d(var(--flux-scale-x), var(--flux-scale-y), 1);
+
+	opacity: var(--flux-alpha, 0.125);
+
+	// transition: opacity 100ms ease-in;
+
+	&:hover {
+		--flux-alpha: 0.875;
+
+		$amount: 50;
+		$sel: "";
+		@for $i from 1 through $amount {
+			$sel: if($sel == "", ".flux", $sel + " + .flux");
+			& + #{$sel} {
+				// 1 = 160
+				// x = $i
+				--flux-alpha: #{($amount - $i) * 0.0125};
+			}
+		}
+	}
+
+	&::after {
+		content: var(--flux-before);
+		position: absolute;
+		left: 100%;
+		top: 50%;
+		width: 1px;
+		height: 80rem;
+
+		box-shadow: inset 0px 0 0px 2px $shadow-color;
+
+		pointer-events: none;
+	}
+}

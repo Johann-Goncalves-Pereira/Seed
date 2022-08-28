@@ -1,4 +1,6 @@
 :root {
+	--rounded-full: 100vmax;
+
 	//? @link https://utopia.fyi/type/calculator?c=320,21,1.067,1140,24,1.5,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l
 	//& Font size flued
 	--fsf-00: clamp(0.67rem, 1.34rem - 0.95vw, 1.15rem);
